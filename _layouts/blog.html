@@ -17,41 +17,11 @@ description: 或许是最漂亮的Jekyll主题
 
 <main class="g-container home-content">
     <div class="article-list">
-        {% for post in paginator.posts %}
-            <article class="article-item">
-                {% if post.cover %}
-                <div class="post-cover">
-                    <a class="post-link" href="{{ post.url | relative_url }}" title="{{ post.title }}"></a>
-                    <img src="{{ post.cover | relative_url }}" href="{{ post.url | relative_url }}" alt="">
-                </div>
-                {% endif %}
-                <section class="post-preview">
-                    <a class="post-link" href="{{ post.url | relative_url }}" title="{{ post.title }}"></a>
-                    <h2 class="post-title">{{ post.title }}</h2>
-                    {% if post.subtitle %}
-                    <h3 class="post-subtitle">{{ post.subtitle }}</h3>
-                    {% endif %}
-                    {% if post.subtitle.size==0 or post.subtitle==nil %}
-                    <p class="post-excerpt">{{ post.excerpt | strip_html | strip_newlines | truncate: 126}}</p>
-                    {% endif %}
-                </section>
-                <footer class="post-meta">
-                    <div class="post-tags">
-                        {% if post.tags.size > 0 %}
-                            {% for tag in post.tags  %}
-                            <a href={{ "tags.html#" | append: tag | relative_url }} class="post-tag">{{ tag }}</a>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
-                    <time class="post-date" datetime="{{ post.date | date:"%y-%m-%d" }}">{{ post.date | date_to_string }}</time>
-                </footer>
-            </article>
-        {% endfor %}
+        {% include paginate.html %}
 
         {% if paginator.total_pages > 1 %}
             {% include pageNav.html %}
         {% endif %}
-
     </div>
 
     <aside class="g-sidebar-wrapper">
@@ -64,12 +34,34 @@ description: 或许是最漂亮的Jekyll主题
                 <div class="bio">
                     <p>{{ site.bio }}</p>
                 </div>
+                <div class="level">
+                    <div class="level-item">
+                        <p class="heading">Posts</p>
+                        <a href="{{ "/archives.html" | prepend: site.baseurl }}">
+                            <p class="title">{{ site.posts | size }}</p>
+                        </a>
+                    </div>
+                    <div class="level-item">
+                        <p class="heading">Categories</p>
+                        <a href="{{ "/categories.html" | prepend: site.baseurl }}">
+                            <p class="title">{{ site.categories | size }}</p>
+                        </a>
+                    </div>
+                    <div class="level-item">
+                        <p class="heading">Tags</p>
+                        <a href="{{ "/tags.html" | prepend: site.baseurl }}">
+                            <p class="title">{{ site.tags | size }}</p>
+                        </a>
+                    </div>
+                </div>
                 {% if site.sns.size > 0 %}
                 <ul id="sns-links" class="sns-links">
                     {% for s in site.sns %}
                     <li>
-                        <a href="{{ s[1] }}" target="_blank">
-                            <i class="iconfont icon-{{ s[0] }}"></i>
+                        <a href="{{ s[1] }}" target="_blank" aria-label="{{ s[0] }}">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-{{ s[0] }}"></use>
+                            </svg>
                         </a>
                     </li>
                     {% endfor %}
@@ -87,12 +79,24 @@ description: 或许是最漂亮的Jekyll主题
                 {% endfor %}
             </section>
             {% endif %}
+
+            {% if site.links.size > 0 %}
+            <section class="tags-card">
+                <div class="links" rel="links">Links</div>
+                {% for link in site.links %}
+                    <a href="{{ link[1] }}" target="_blank" class="tag" rel="noreferrer"> {{ link[0] }} </a>
+                {% endfor %}
+            </section>
+            {% endif %}
+
         </div>
 
         {% if site.search %}
         <div class="search-card">
             <input id="search_input" type="text" placeholder="Search..." autocomplete="off">
-            <i class="iconfont icon-search"></i>
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-search"></use>
+            </svg>
             <div class="search_result"></div>
         </div>
         {% endif %}

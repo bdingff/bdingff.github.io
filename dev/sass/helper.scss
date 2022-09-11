@@ -1,27 +1,31 @@
 /*** Parameters ***/
 
 // font
-$fonts: -apple-system, Verdana, 'PingFang SC', 'Helvetica Neue', 'Arial', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+$fonts: "LXGW WenKai Screen", -apple-system, Verdana, 'PingFang SC', 'Helvetica Neue', 'Arial', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
 
 // color
 $color-theme-default: #1494FB;
 $color-theme-pink: #FC6794;
 $color-bg: #F7F8FA;
 $color-brand: #B8BDC3;
-$color-dark-primary: #282C33;
+// $color-dark-primary: #282C33;
+$color-dark-primary: #2d313a;
 $color-dark-secondary: #2D313A;
 
 // font-color
 $color-f-primary: #4E4E4E;
 $color-f-secondary: #656565;
-$color-f-dark: #868A94;
+// $color-f-dark: #868A94;
+$color-f-dark: #AAAAAA;
 
 // size
 $g-header-h: 26px;
 $g-banner-h: 460px;
 $g-footer-h: 40px;
-$g-container-w: 960px;
-$post-content-w: 720px;
+$g-container-w: 1080px;
+$post-content-w: 695px;
+// $g-container-w: 1334px;
+// $post-content-w: 950px;
 
 /*** Mixins ***/
 @mixin clearfix {
@@ -41,7 +45,8 @@ $post-content-w: 720px;
     height: 22px;
     padding: 0 8px;
     font-size: 14px;
-    color: #A6ABB2;
+    // color: #A6ABB2;
+    color: #656565;
     font-family: $fonts;
     line-height: 22px;
     box-sizing: border-box;
@@ -51,16 +56,17 @@ $post-content-w: 720px;
     cursor: pointer;
     margin-right: 2px;
     transition: .2s;
+    margin-bottom: 5px;
     &:last-child {
         margin-right: 0;
     }
     &:hover {
-        color: #83888F;
+        color: $color-theme-default!important;
     }
 }
 
 @mixin cardStyle {
-    padding: 30px 20px;
+    padding: 20px 20px;
     background-color: #fff;
     border: 1px solid #E7EAF1;
     border-radius: 3px;
@@ -79,7 +85,8 @@ $post-content-w: 720px;
         overflow: hidden;
         box-shadow: 0 1px 4px rgba(100, 110, 120, .53);
         img {
-            width: 100%;
+            width: 70px;
+            height: 70px;
         }
     }
     .author-name {
@@ -95,7 +102,26 @@ $post-content-w: 720px;
             line-height: 20px;
         }
     }
-
+    .level {
+        display: flex;
+        margin-top: 20px;
+        .level-item {
+            flex-grow: 1;
+            .heading {
+                display: block;
+                font-size: 11px;
+                letter-spacing: 1px;
+                margin-bottom: 5px;
+                text-transform: uppercase;
+            }
+            .title {
+                color: #363636;
+                font-size: 2rem;
+                font-weight: 400;
+                line-height: 1.125;
+            }
+        }
+    }
     .sns-links {
         margin-top: 14px;
         cursor: default;
@@ -122,18 +148,18 @@ $post-content-w: 720px;
     font-size: 14px;
     letter-spacing: .6px;
     line-height: 22px;
-    &:before {
-        position: relative;
-        top: 2px;
-        left: -6px;
-        content: '';
-        float: left;
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        background: url('../icons/date.svg') no-repeat center;
-        background-size: 100%;
-    }
+    // &:before {
+    //     position: relative;
+    //     top: 2px;
+    //     left: -6px;
+    //     content: '';
+    //     float: left;
+    //     display: inline-block;
+    //     width: 18px;
+    //     height: 18px;
+    //     background: url('../icons/date.svg') no-repeat center;
+    //     background-size: 100%;
+    // }
 }
 
 @mixin snsIcon {
@@ -142,6 +168,27 @@ $post-content-w: 720px;
         transition: .2s;
         &:hover {
             color: #7B848F;
+        }
+    }
+    .icon {
+        color: #B8BDC3;
+        transition: .2s;
+        width: 22px;
+        height: 22px;
+        line-height: 30px;
+        vertical-align: -0.15em;
+        fill: currentColor;
+        overflow: hidden;
+        filter: grayscale(100%);
+        -webkit-filter: grayscale(100%);
+        -moz-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+        &:hover {
+            color: #7B848F;
+            filter: none;
+            -webkit-filter: none;
+            -moz-filter: none;
+            -ms-filter: none;
         }
     }
     .icon-weibo:hover {
